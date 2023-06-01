@@ -32,18 +32,4 @@ class UserAdapter(private val userList: List<User>) : RecyclerView.Adapter<UserA
     }
 
     override fun getItemCount() = userList.size
-
-    private fun loadImageFromUrl(url: String, imageView: ImageView) {
-        AsyncTask.execute {
-            try {
-                val conn = URL(url).openConnection()
-                conn.connect()
-                val bitmap = BitmapFactory.decodeStream(conn.getInputStream())
-                imageView.post {
-                    imageView.setImageBitmap(bitmap)
-                }
-            } catch (ex: Exception) {
-            }
-        }
-    }
 }
